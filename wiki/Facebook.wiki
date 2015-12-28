@@ -1,0 +1,171 @@
+#sidebar Documentation
+#labels Documentation
+#summary Contains global settings used within the API.  These settings range from API keys to oAuth tokens(once set). The Settings Object contains both Get and SET methods.
+
+
+= {{{Facebook(action, data) }}} =
+Extends Social
+Contains global settings used within the API. Contains both Get and SET methods.
+<wiki:toc />
+== Details ==
+*Defined in:* clientapi\newDoc.js
+
+
+
+
+=== Examples ===
+{{{
+<strong>To login with extended Facebook permissions:</strong>	S.Facebook("login");
+}}}
+{{{
+<strong>To login with extended Facebook permissions:</strong>	var data = {	"location, likes"};S.Facebook("login", data);
+}}}
+{{{
+<strong>To post something to the users wall:</strong>	var data = {	name:"Name of the feed", 	caption:"A short caption about the post", 	link:"A link to your App or website."};S.Facebook("feed", data);
+}}}
+{{{
+<strong>To share content/links with a specific friends:</strong>	var data = {	name:"Name of the post", 	link:"A link to your App or website."};S.Facebook("share", data);
+}}}
+{{{
+<strong>To invite friends to use your APP:</strong>	var data = {	title:"The title of your invite", 	message:"A message to go with the invite", 	caption:"A short caption about the invite"};S.Facebook("invite", data);
+}}}
+
+=== Parameters ===
+|| *Type* || *Name* || *Additional Info* || *Description* ||
+|| string || action ||  || The name of the action/task you wish to perform on Facebook ||
+|| object || data ||  || The parameters which the given action needs in order to execute ||
+
+
+=== Returns ===
+|| *Type* || *Name* || *Description* ||
+|| boolean ||  || Returns either the value requested or true if the value has been set.<strong>Usages:</strong> ||
+
+
+== Methods ==
+
+=== {{{Facebook.Feed <private> <static>  -> boolean }}} ===
+Allows the user to post something to their Facebook wall.  This will go through the login and authentication process if the user is not logged in.
+
+
+
+
+
+
+
+==== Parameters ====
+|| *Type* || *Name* || *Additional Info* || *Description* ||
+|| object || data ||  || An object containing the parameters needed to perform the needed action. ||
+
+
+==== Returns ====
+|| *Type* || *Name* || *Description* ||
+|| boolean ||  || Returns true when the action was carried out successfully ||
+
+----
+=== {{{Facebook.Harvest <private> <static> }}} ===
+This simple function gathers all the user details specified in Settings.Data and stored them in Settings.Data under the Facebook object.  These settings can later be retrieved and sent to a backend service to be stored.In order to use the Harvest functionality, <strong>you HAVE TO call the login method of Social.Facebook</strong>.<br /><br /><strong><em>At the moment, the Harvest method only stored the users data that has been set in the Settings.Data.Facebook.HarvestFields property.</em></strong><br />These fields can be customised when the Framework is initialized.
+
+
+
+
+
+
+==== See ====
+ * Facebook.Login
+
+----
+=== {{{Facebook.Invite <private> <static>  -> boolean }}} ===
+Allows the user to invite their Facebook firends to join the App.  This will go through the login and authentication process if the user is not logged in.
+
+
+
+
+
+
+
+==== Parameters ====
+|| *Type* || *Name* || *Additional Info* || *Description* ||
+|| object || data ||  || An object containing the parameters needed to perform the needed action. ||
+
+
+==== Returns ====
+|| *Type* || *Name* || *Description* ||
+|| boolean ||  || Returns true when the action was carried out successfully ||
+
+----
+=== {{{Facebook.LoadAPI <private> <static>  -> boolean }}} ===
+Tests if the API has been loaded into the DOM and has been instatiated.  If the API has been loaded, but the API has not been initialized, this object will initialize the API using the Facebook AppId(stored in Settings.Data).  Once the API has been loaded and instantiated, a flag is set in Settings.Data under the Facebook object which specifies the process has completed successfully.
+
+
+
+
+
+
+
+==== Returns ====
+|| *Type* || *Name* || *Description* ||
+|| boolean ||  || Returns true once the API has been loaded and initialized. ||
+
+----
+=== {{{Facebook.Login <private> <static>  -> boolean }}} ===
+This is used to perform simple login and authentication functionality.  Once the user has logged in and authenticated the APP to use their Facebook profile, the Harvest method is called in order to store the users details.  <br />Permissions can be extended by passing in parameters as an object(written in a JSON format).<br /><br /><strong><em>At the moment, the Harvest method only stored the users data that has been set in the Settings.Data.Facebook.HarvestFields property.</em></strong><br />These fields can be customised when the Framework is initialized.
+
+
+
+
+
+
+
+==== Parameters ====
+|| *Type* || *Name* || *Additional Info* || *Description* ||
+|| object || data ||  || An object containing the extended permissions needed, if any, to gain access to other user details. ||
+
+
+==== Returns ====
+|| *Type* || *Name* || *Description* ||
+|| boolean ||  || Returns true if Login was successfull and the user authenticates the App ||
+==== See ====
+ * Social.Init,
+ * Facebook.Harvest
+
+----
+=== {{{Facebook.SetStatus <private> <static>  -> boolean }}} ===
+Callback function for the FB.getLoginStatus method.  This is needed and used to test if the user is logged in and 'connected' to the App. This stores the response and oAuth tokens in the Settings.Data object.
+
+
+
+
+
+
+
+==== Parameters ====
+|| *Type* || *Name* || *Additional Info* || *Description* ||
+|| object || response ||  || The responce that the Facebook .getLoginStatus method returns. ||
+
+
+==== Returns ====
+|| *Type* || *Name* || *Description* ||
+|| boolean ||  || Returns true on success. ||
+
+----
+=== {{{Facebook.Share <private> <static>  -> boolean }}} ===
+Allows the user to post a link or comment to a friends page.  This will go through the login and authentication process if the user is not logged in.
+
+
+
+
+
+
+
+==== Parameters ====
+|| *Type* || *Name* || *Additional Info* || *Description* ||
+|| object || data ||  || An object containing the parameters needed to perform the needed action. ||
+
+
+==== Returns ====
+|| *Type* || *Name* || *Description* ||
+|| boolean ||  || Returns true when the action was carried out successfully ||
+
+----
+
+_Documentation generated by [http://code.google.com/p/jsdoc-toolkit/ JsDoc Toolkit] 2.4.0 on Mon Feb 13 2012 13:52:23 GMT-0000 (GMT)

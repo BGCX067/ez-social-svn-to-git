@@ -1,0 +1,50 @@
+=Steps to get started=
+
+==Step 1:==
+
+
+Add the framework to your page(s).  You could use this to stay up to date with latest versions or download and 
+manually update it.
+
+	<script src="http://resources.jacquespagels.com/apis/social/apiSocial_Latest.js"></script>
+
+
+
+==Step 2:==
+
+
+Once you have a Facebook APP key Insatiate the framework and update your default settings.
+
+	S.Init({api:"Facebook",data:{"AppKey":320646637979079}});
+
+
+
+==Step 3:==
+
+
+Call a method you wish to carry out.
+
+	var data = {
+		name:"Name of the feed", 
+		caption:"A short caption about the post", 
+		link:"A link to your App or website."
+	};
+
+	S.Facebook("feed", data);
+
+
+Thats it...you're done! :-)
+
+
+
+Feel free to pass it around and let me know if you would like to add functionality to it.  I'm all about making the 
+lives of developers and my life easier.
+
+-------------------------------------------------------------------------------------------------------------------------
+
+    Note:
+
+	This is a rough draft of the framework - so rough it doesn't even have a name yet - so over the next few months 
+	functionality will be added and code will be cleant up, refactored and optimised.
+
+-------------------------------------------------------------------------------------------------------------------------

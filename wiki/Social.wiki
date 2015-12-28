@@ -1,0 +1,197 @@
+#summary Creates the namespace that framework will reside under.  This object is created within a closure and is later appended to the DOM.
+#labels Documentation
+#sidebar Documentation
+Social contains a number of methods that the framework used, these methods/objects can range from something simple such as detecting if a div 
+exists on the DOM to more complicated Objects that load Social API into the DOM on demand.
+
+
+= {{{Social(settings) }}} =
+
+
+<wiki:toc />
+== Details ==
+*Defined in:* clientapi\newDoc.js
+
+
+
+
+=== Examples ===
+{{{
+
+var settings = [
+    {"api":"Facebook","data":{"AppKey":1234567890}},
+    {"api":"Twitter", "data":{"AccountName":"TwitterName"}}
+];
+
+S.Init(settings)
+}}}
+
+=== Parameters ===
+|| *Type* || *Name* || *Additional Info* || *Description* ||
+|| Object || settings ||  || A Object containing a list of default settings that need to be updated before moving forward. ||
+
+
+== See Also ==
+
+ * Settings
+
+
+== Methods ==
+
+=== {{{Social.Facebook <static>  -> boolean }}} ===
+Validates the parameters that are needed to perform a task/action.  The parameters are 
+stored in an object.  These parameters can be customised using the Social.Utils.Merge() method.
+
+
+
+
+
+
+
+==== Parameters ====
+|| *Type* || *Name* || *Additional Info* || *Description* ||
+|| string || action ||  || The name of the action/task you wish to perform with the Facebook API ||
+|| object || data ||  || The parameters which the given action needs in order to execute ||
+
+
+==== Returns ====
+|| *Type* || *Name* || *Description* ||
+|| boolean ||  || Returns true if the validation is passed. ||
+
+----
+=== {{{Social.Init <static> }}} ===
+Initiating method that will overwrite the default settings.  This method MUST be called first, in order to 
+ensure that all the needed settings have een updated for future use.
+
+
+
+
+
+==== Examples ====
+{{{
+
+var settings = [
+    {"api":"Facebook","data":{"AppKey":1234567890}},
+    {"api":"Twitter", "data":{"AccountName":"TwitterName"}}
+];
+
+S.Init(settings)
+}}}
+
+
+==== Parameters ====
+|| *Type* || *Name* || *Additional Info* || *Description* ||
+|| Object || settings ||  || A Object containing a list of default settings that need to be updated before moving forward. ||
+
+==== See ====
+ * Settings
+
+----
+=== {{{Social.Loader <static>  -> boolean }}} ===
+Performs an XMLHTTPRequest to retrieve data.  This will request the data and append it to the DOM using HTML 'script' tags.
+A public method, Social.Loader.MakeRequest(), can be used to retrieve packets of data which is returned rather than appended to the DOM.
+These requests uses a 'Sandbox gateway' to perform cross-domain requests.
+
+
+
+
+
+==== Examples ====
+{{{
+<strong>The following will download the jQuery Framework and add it to the DOM.</strong>
+
+var jQuery = "http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"
+
+Social.Loader(jQuery);
+}}}
+
+
+==== Parameters ====
+|| *Type* || *Name* || *Additional Info* || *Description* ||
+|| string || url ||  || The path of the JavaScript document that you wish the load into the DOM. ||
+
+
+==== Returns ====
+|| *Type* || *Name* || *Description* ||
+|| boolean ||  || Returns true when the JavaScript has been added to the DOM successfully. ||
+
+----
+=== {{{Social.Settings <static>  -> string / boolean }}} ===
+Used to GET and SET global settings used within the API.  
+Settings used throughout the Framework are stored here.  These settings range from API keys to oAuth 
+tokens(once set).
+
+
+
+
+
+
+
+==== Parameters ====
+|| *Type* || *Name* || *Additional Info* || *Description* ||
+|| string || api ||  || The name of the API / top-level object of data you wish to access. (ie. "Facebook") ||
+|| string || key ||  || The Name/Path to the key that you wish to retrieve or set the value of. ||
+|| string || value || Optional || The value you wish the set the Key as. ||
+
+
+==== Returns ====
+|| *Type* || *Name* || *Description* ||
+|| string / boolean ||  || Returns either the value requested or true if the value has been set. ||
+
+----
+=== {{{Social.Twitter <static>  -> boolean }}} ===
+Contains all methods that are useed to perform tasks/actions via the Twitter API. These tasks include Getting the latest 
+Tweets made by a user and allowing you to write to a users Twitter Stream with the use of 'Twitter Intent'.
+
+
+
+
+
+==== Examples ====
+{{{
+<strong>To Get the latest 5 Tweets made by a users:</strong>
+	
+S.Twitter("Latest", {"containerId":"tweetContainer", "TweetCount":5});
+}}}
+{{{
+<strong>To Write to a users Twitter stream:</strong>
+	
+S.Twitter("Tweet", {Text:"This is the text in the Tweet!", Via:"TwitterAccount"});
+}}}
+
+
+==== Parameters ====
+|| *Type* || *Name* || *Additional Info* || *Description* ||
+|| string || action ||  || The name of the action/task you wish to perform on Twitter ||
+|| object || data ||  || The parameters which the given action needs in order to execute ||
+
+
+==== Returns ====
+|| *Type* || *Name* || *Description* ||
+|| boolean ||  || Returns either the value requested or true if the value has been set. ||
+
+----
+=== {{{Social.Validate <static>  -> boolean }}} ===
+Validates the parameters that are needed to perform a task/action.  The parameters are 
+stored in an object.  These parameters can be customised using the Social.Utils.Merge() method.
+
+
+
+
+
+
+
+==== Parameters ====
+|| *Type* || *Name* || *Additional Info* || *Description* ||
+|| string || api ||  || The name of the API that you would like to validate against ||
+|| string || type ||  || The name of the action in the API that you would like to validate against ||
+|| object || data ||  || The parameters which the given action needs in order to execute ||
+
+
+==== Returns ====
+|| *Type* || *Name* || *Description* ||
+|| boolean ||  || Returns true if the validation is passed. ||
+
+----
+
+_Documentation generated by [http://code.google.com/p/jsdoc-toolkit/ JsDoc Toolkit] 2.4.0 on Mon Feb 13 2012 13:52:23 GMT-0000 (GMT)
